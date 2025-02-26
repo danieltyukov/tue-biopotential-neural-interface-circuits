@@ -5,11 +5,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Here you set all system-level specifications (to be found based on requirements)
-Flow = 10; %Start of the bandwidth of the system [Hz]
-Fhigh = 100; %End of the bandwidth of the system [Hz]
-InputImpedance = 1e9; %Input impedance of the system (Z_in) [ohm] 
-InputRefNoise = 0e-6; %Input-referred noise (V_IRN) [Vrms]
-InputRange = 1; %Input range of the system (V_inpp) [V]
+Flow = 1; %Start of the bandwidth of the system [Hz]
+Fhigh = 5e3; %End of the bandwidth of th-e system [Hz]
+InputImpedance = 10e9; %Input impedance of the system (Z_in) [ohm] 
+InputRefNoise = 10e-6; %Input-referred noise (V_IRN) [Vrms]
+InputRange = 20e-3; %Input range of the system (V_inpp) [V]
 
 %Here you set the impedance of the ETIs
 Zeti_p = 100e3; %Impedance of the positive electrode [ohm]
