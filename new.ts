@@ -1,3 +1,0 @@
-TextDecoderStream
-satisfiess
-s
