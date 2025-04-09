@@ -1,0 +1,38 @@
+// VerilogA for DAC_IDEAL, 12bit, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module DAC_IDEAL(D, CLK, VSS, A);
+
+parameter real tdel = 20p from [0:inf);
+parameter real ttran = 20p from [0:inf);
+parameter real Vthres = 0.4;
+
+input [11:0] D;
+input CLK;
+inout VSS;
+output A;
+
+electrical CLK, VSS, A;
+electrical [11:0] D;
+real Vtemp;
+genvar i;
+
+analog begin
+  //at rising CLK edge, calculate Vtemp based on digital code
+  @(cross(V(CLK) - V(VSS) - Vthres, +1) or initial_step ) begin
+    Vtemp = 0.0;
+
+    for (i = 11; i >= 0; i = i - 1) begin
+      Vtemp = 2.0 * Vtemp;
+      if (V(D[i]) - V(VSS) > Vthres) begin
+	Vtemp = Vtemp + 1.0;
+      end
+    end
+  end
+
+  //process Vtemp to analog output
+  V(A) <+ transition (Vtemp, tdel, ttran);
+end
+endmodule
